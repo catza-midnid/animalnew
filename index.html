@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบสำรวจความชอบสัตว์เลี้ยงของคนไทย</title>
+<style>
+:root{--ink:#26352e;--muted:#68776e;--green:#315f4b;--mint:#e8f2eb;--cream:#fbfaf5;--line:#e4e9e2;--accent:#d78e69}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:"Leelawadee UI","Noto Sans Thai",Tahoma,sans-serif;line-height:1.65}
+header{background:linear-gradient(130deg,#254b3b,#47765d);color:white;padding:42px 20px 55px;text-align:center}
+header .tag{display:inline-block;border:1px solid #ffffff70;border-radius:30px;padding:4px 13px;font-size:13px;letter-spacing:.3px}
+header h1{font-size:clamp(25px,4vw,38px);margin:14px auto 8px;max-width:850px;line-height:1.35}
+header p{margin:0 auto;max-width:700px;color:#e8f0e9}
+.wrap{max-width:900px;margin:-25px auto 60px;padding:0 16px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:25px;margin-bottom:18px;box-shadow:0 8px 28px #26352e0a}
+.intro{display:flex;gap:15px;align-items:flex-start}.intro .emoji{font-size:38px}
+h2{font-size:21px;margin:0 0 5px;color:var(--green)}.sub{color:var(--muted);font-size:14px;margin:0 0 18px}
+.progressline{height:7px;background:#edf1ec;border-radius:20px;overflow:hidden;margin-top:18px}.progressline span{display:block;height:100%;width:0;background:#6d9b7c;transition:.2s}
+.field{margin:18px 0 23px}.field>label,.question{display:block;font-weight:700;margin-bottom:9px}
+.req{color:#bb5c45}.hint{font-size:13px;color:var(--muted);font-weight:400}
+input[type=text],select,textarea{width:100%;border:1px solid #d9e1d9;border-radius:10px;padding:12px 13px;font:inherit;background:white;color:var(--ink)}
+textarea{min-height:95px;resize:vertical}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.option{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;cursor:pointer;transition:.15s;background:#fff}
+.option:hover{border-color:#8eaf98;background:#f8fbf8}.option:has(input:checked){border-color:var(--green);background:var(--mint)}
+.option input{margin-top:5px;accent-color:var(--green);flex-shrink:0}.option span{font-size:14px}
+.pet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.pet{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:11px;cursor:pointer;min-height:66px}
+.pet:has(input:checked){border-color:var(--green);background:var(--mint)}
+.pet input{accent-color:var(--green)}.pet .animal{font-size:26px;width:35px;text-align:center}.pet strong{display:block;font-size:14px}.pet small{color:var(--muted);font-size:11px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{border:0;border-radius:11px;padding:12px 19px;font:inherit;font-weight:700;cursor:pointer}
+.primary{background:var(--green);color:white}.primary:hover{background:#244a38}.secondary{background:#edf2ed;color:var(--green)}.danger{background:#fff0ed;color:#a34b3d}
+.note{background:#f7f5ed;border-left:4px solid #d6b37c;padding:12px 14px;border-radius:7px;font-size:13px;color:#665c48}
+.hidden{display:none!important}.success{background:#edf7ef;border:1px solid #cde4d1;color:#285b38;padding:14px;border-radius:12px;margin-bottom:15px}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+.stat{background:#f4f7f3;border-radius:12px;padding:14px;text-align:center}.stat b{display:block;font-size:25px;color:var(--green)}.stat span{font-size:12px;color:var(--muted)}
+.barrow{display:grid;grid-template-columns:115px 1fr 42px;gap:9px;align-items:center;margin:9px 0;font-size:13px}
+.track{height:12px;background:#edf1ec;border-radius:20px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#6b9878,#a5c5a8);border-radius:20px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 20px 35px}a{color:var(--green)}
+@media(max-width:560px){header{padding:32px 16px 48px}.panel{padding:19px}.options,.pet-grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(3,1fr)}.barrow{grid-template-columns:95px 1fr 30px;gap:6px}}
+</style>
+</head>
+<body>
+<header>
+  <span class="tag">แบบสำรวจเพื่อการศึกษา · 2026</span>
+  <h1>คุณชอบสัตว์เลี้ยงชนิดไหนมากที่สุด?</h1>
+  <p>ร่วมแบ่งปันความคิดเห็น เพื่อสำรวจความชื่นชอบสัตว์เลี้ยงของคนไทย</p>
+</header>
+<main class="wrap">
+  <section class="panel" id="surveyIntro">
+    <div class="intro"><div class="emoji">🐾</div><div><h2>แบบสำรวจความชอบสัตว์เลี้ยงของคนไทย</h2>
+    <p class="sub">ใช้เวลาตอบประมาณ 3–5 นาที · ไม่มีคำตอบถูกหรือผิด</p>
+    <div>แบบสอบถามนี้จัดทำขึ้นเพื่อศึกษาความชื่นชอบและความสนใจในการเลี้ยงสัตว์ของคนไทย คำตอบจะใช้เพื่อการศึกษาและวิเคราะห์ภาพรวมเท่านั้น</div></div></div>
+    <div class="progressline"><span id="progress"></span></div>
+    <p class="hint" id="progressText">ตอบคำถามที่จำเป็นให้ครบก่อนส่งแบบสอบถาม</p>
+  </section>
+
+  <form id="surveyForm">
+    <section class="panel">
+      <h2>ส่วนที่ 1 · ข้อมูลทั่วไป</h2><p class="sub">ข้อมูลพื้นฐานของผู้ตอบแบบสอบถาม</p>
+      <div class="field"><label for="age">1. ช่วงอายุ <span class="req">*</span></label>
+        <select id="age" required><option value="">เลือกช่วงอายุ</option><option>ต่ำกว่า 18 ปี</option><option>18–25 ปี</option><option>26–35 ปี</option><option>36–45 ปี</option><option>46–55 ปี</option><option>มากกว่า 55 ปี</option></select></div>
+      <div class="field"><span class="question">2. เพศ <span class="req">*</span></span><div class="options">
+        <label class="option"><input type="radio" name="gender" value="ชาย" required><span>ชาย</span></label>
+        <label class="option"><input type="radio" name="gender" value="หญิง"><span>หญิง</span></label>
+        <label class="option"><input type="radio" name="gender" value="LGBTQ+"><span>LGBTQ+</span></label>
+        <label class="option"><input type="radio" name="gender" value="ไม่ประสงค์ระบุ"><span>ไม่ประสงค์ระบุ</span></label></div></div>
+      <div class="field"><label for="region">3. ภูมิภาคที่อาศัยอยู่ <span class="req">*</span></label>
+        <select id="region" required><option value="">เลือกภูมิภาค</option><option>กรุงเทพมหานครและปริมณฑล</option><option>ภาคเหนือ</option><option>ภาคกลาง</option><option>ภาคตะวันออกเฉียงเหนือ</option><option>ภาคตะวันออก</option><option>ภาคตะวันตก</option><option>ภาคใต้</option></select></div>
+      <div class="field"><span class="question">4. ปัจจุบันท่านเลี้ยงสัตว์หรือไม่? <span class="req">*</span></span><div class="options">
+        <label class="option"><input type="radio" name="ownership" value="เลี้ยงสัตว์" required><span>เลี้ยงสัตว์</span></label>
+        <label class="option"><input type="radio" name="ownership" value="ไม่ได้เลี้ยง แต่สนใจ"><span>ไม่ได้เลี้ยง แต่สนใจ</span></label>
+        <label class="option"><input type="radio" name="ownership" value="ไม่ได้เลี้ยงและไม่สนใจ"><span>ไม่ได้เลี้ยงและไม่สนใจ</span></label></div></div>
+    </section>
+
+    <section class="panel">
+      <h2>ส่วนที่ 2 · ความชื่นชอบสัตว์เลี้ยง</h2><p class="sub">เลือกสัตว์ที่ท่านชื่นชอบมากที่สุด 1 ชนิด</p>
+      <div class="field"><span class="question">5. ท่านชื่นชอบสัตว์เลี้ยงชนิดใดมากที่สุด? <span class="req">*</span></span>
+        <div class="pet-grid" id="favoritePets">
+          <label class="pet"><input type="radio" name="favorite" value="สุนัขพันธุ์ใหญ่" required><span class="animal">🐕</span><span><strong>สุนัขพันธุ์ใหญ่</strong><small>เช่น โกลเด้น รีทรีฟเวอร์</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="ไก่สวยงาม"><span class="animal">🐓</span><span><strong>ไก่สวยงาม</strong><small>ไก่ประดับ / ไก่แฟนซี</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="เต่าบก"><span class="animal">🐢</span><span><strong>เต่าบก</strong><small>เต่าบกหลากหลายสายพันธุ์</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="นกแก้ว"><span class="animal">🦜</span><span><strong>นกแก้ว</strong><small>เช่น มาคอว์</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="เป็ดสวยงาม"><span class="animal">🦆</span><span><strong>เป็ดสวยงาม</strong><small>เช่น คอลดั๊ก</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="แมว"><span class="animal">🐈</span><span><strong>แมว</strong><small>แมวบ้านและแมวสายพันธุ์ต่าง ๆ</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="กระต่าย"><span class="animal">🐇</span><span><strong>กระต่าย</strong><small>กระต่ายเลี้ยง</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="หนูเลี้ยงสวยงาม"><span class="animal">🐹</span><span><strong>หนูเลี้ยงสวยงาม</strong><small>เช่น แฮมสเตอร์</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="ปลาสวยงาม"><span class="animal">🐠</span><span><strong>ปลาสวยงาม</strong><small>ปลาในตู้ / ปลาสวยงาม</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="กุ้งสวยงาม"><span class="animal">🦐</span><span><strong>กุ้งสวยงาม</strong><small>กุ้งแคระและกุ้งประดับ</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="นกขนาดเล็ก"><span class="animal">🐦</span><span><strong>นกขนาดเล็ก</strong><small>เช่น เลิฟเบิร์ด ค็อกคาเทล</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="สุนัขพันธุ์เล็ก"><span class="animal">🐶</span><span><strong>สุนัขพันธุ์เล็ก</strong><small>เช่น ชิวาวา ปอมเมอเรเนียน</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="ชูการ์ไกลเดอร์"><span class="animal">🐿️</span><span><strong>ชูการ์ไกลเดอร์</strong><small>สัตว์เลี้ยงตัวเล็ก</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="เม่นแคระ"><span class="animal">🦔</span><span><strong>เม่นแคระ</strong><small>เม่นแคระเลี้ยง</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="กิ้งก่า"><span class="animal">🦎</span><span><strong>กิ้งก่า</strong><small>สัตว์เลื้อยคลาน</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="ตุ๊กแก"><span class="animal">🦎</span><span><strong>ตุ๊กแก</strong><small>เช่น Leopard Gecko</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="งูสวยงาม"><span class="animal">🐍</span><span><strong>งูสวยงาม</strong><small>งูเลี้ยงสายพันธุ์ต่าง ๆ</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="กบสวยงาม"><span class="animal">🐸</span><span><strong>กบสวยงาม</strong><small>กบสีสันหลากหลาย</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="แมงมุม"><span class="animal">🕷️</span><span><strong>แมงมุม</strong><small>แมงมุมเลี้ยง / ทารันทูลา</small></span></label>
+          <label class="pet"><input type="radio" name="favorite" value="บุชเบบี้"><span class="animal">🐒</span><span><strong>บุชเบบี้</strong><small>หรือกาลาโก</small></span></label>
+        </div>
+      </div>
+      <div class="field"><span class="question">6. นอกจากชนิดที่ชอบที่สุดแล้ว ท่านสนใจสัตว์ชนิดใดอีกบ้าง? <span class="hint">(เลือกได้หลายข้อ ไม่บังคับ)</span></span>
+        <div class="options" id="otherPets"></div></div>
+      <div class="field"><span class="question">7. เหตุผลหลักที่ท่านชื่นชอบสัตว์เลี้ยงคืออะไร? <span class="req">*</span></span><div class="options">
+        <label class="option"><input type="radio" name="reason" value="มีความน่ารัก" required><span>มีความน่ารัก</span></label>
+        <label class="option"><input type="radio" name="reason" value="เป็นมิตรและเข้ากับคนได้ดี"><span>เป็นมิตรและเข้ากับคนได้ดี</span></label>
+        <label class="option"><input type="radio" name="reason" value="เลี้ยงง่าย ดูแลไม่ยุ่งยาก"><span>เลี้ยงง่าย ดูแลไม่ยุ่งยาก</span></label>
+        <label class="option"><input type="radio" name="reason" value="ช่วยคลายเครียดและเป็นเพื่อน"><span>ช่วยคลายเครียดและเป็นเพื่อน</span></label>
+        <label class="option"><input type="radio" name="reason" value="มีความแปลกใหม่และน่าสนใจ"><span>มีความแปลกใหม่และน่าสนใจ</span></label>
+        <label class="option"><input type="radio" name="reason" value="ชื่นชอบเป็นพิเศษ"><span>ชื่นชอบเป็นพิเศษ</span></label>
+        <label class="option"><input type="radio" name="reason" value="อื่น ๆ"><span>อื่น ๆ</span></label></div></div>
+      <div class="field"><span class="question">8. หากมีโอกาส ท่านสนใจที่จะเลี้ยงสัตว์ที่เลือกไว้หรือไม่? <span class="req">*</span></span><div class="options">
+        <label class="option"><input type="radio" name="intent" value="สนใจมาก" required><span>สนใจมาก</span></label>
+        <label class="option"><input type="radio" name="intent" value="สนใจ"><span>สนใจ</span></label>
+        <label class="option"><input type="radio" name="intent" value="ไม่แน่ใจ"><span>ไม่แน่ใจ</span></label>
+        <label class="option"><input type="radio" name="intent" value="ไม่สนใจ"><span>ไม่สนใจ</span></label></div></div>
+    </section>
+
+    <section class="panel">
+      <h2>ส่วนที่ 3 · ปัจจัยในการเลือกเลี้ยง</h2><p class="sub">ความคิดเห็นและพฤติกรรมการเลือกสัตว์เลี้ยง</p>
+      <div class="field"><span class="question">9. ปัจจัยใดมีผลต่อการตัดสินใจเลือกสัตว์เลี้ยงมากที่สุด? <span class="req">*</span></span><div class="options">
+        <label class="option"><input type="radio" name="factor" value="ค่าใช้จ่ายในการเลี้ยงดู" required><span>ค่าใช้จ่ายในการเลี้ยงดู</span></label>
+        <label class="option"><input type="radio" name="factor" value="พื้นที่อยู่อาศัย"><span>พื้นที่อยู่อาศัย</span></label>
+        <label class="option"><input type="radio" name="factor" value="ความชอบส่วนตัว"><span>ความชอบส่วนตัว</span></label>
+        <label class="option"><input type="radio" name="factor" value="เวลาในการดูแล"><span>เวลาในการดูแล</span></label>
+        <label class="option"><input type="radio" name="factor" value="ความสะดวกในการหาอาหารและอุปกรณ์"><span>ความสะดวกในการหาอาหารและอุปกรณ์</span></label>
+        <label class="option"><input type="radio" name="factor" value="สุขภาพและอายุขัยของสัตว์"><span>สุขภาพและอายุขัยของสัตว์</span></label></div></div>
+      <div class="field"><label for="budget">10. งบประมาณสำหรับการเลี้ยงสัตว์ต่อเดือน <span class="req">*</span></label>
+        <select id="budget" required><option value="">เลือกงบประมาณ</option><option>ต่ำกว่า 500 บาท</option><option>500–1,000 บาท</option><option>1,001–2,000 บาท</option><option>2,001–3,000 บาท</option><option>มากกว่า 3,000 บาท</option></select></div>
+      <div class="field"><span class="question">11. ท่านคิดว่าสัตว์เลี้ยงประเภทใดจะได้รับความนิยมเพิ่มขึ้นในอนาคต? <span class="req">*</span></span><div class="options">
+        <label class="option"><input type="radio" name="future" value="สุนัขและแมว" required><span>สุนัขและแมว</span></label>
+        <label class="option"><input type="radio" name="future" value="สัตว์เลี้ยงขนาดเล็ก"><span>สัตว์เลี้ยงขนาดเล็ก</span></label>
+        <label class="option"><input type="radio" name="future" value="สัตว์น้ำ"><span>สัตว์น้ำ</span></label>
+        <label class="option"><input type="radio" name="future" value="นกสวยงาม"><span>นกสวยงาม</span></label>
+        <label class="option"><input type="radio" name="future" value="สัตว์ Exotic"><span>สัตว์ Exotic</span></label></div></div>
+      <div class="field"><label for="comment">12. ข้อเสนอแนะหรือความคิดเห็นเพิ่มเติม <span class="hint">(ไม่บังคับ)</span></label><textarea id="comment" placeholder="พิมพ์ความคิดเห็นของท่านที่นี่..."></textarea></div>
+      <div class="note">🔒 แบบสอบถามนี้ไม่เก็บชื่อหรือข้อมูลระบุตัวตน คำตอบจะถูกบันทึกไว้ในเบราว์เซอร์ของอุปกรณ์นี้เท่านั้น</div>
+      <div class="actions"><button class="primary" type="submit">ส่งแบบสอบถาม ✓</button><button class="secondary" type="reset">ล้างคำตอบ</button></div>
+    </section>
+  </form>
+
+  <section class="panel hidden" id="thanks">
+    <div class="success"><strong>ขอบคุณที่ร่วมตอบแบบสอบถาม 💚</strong><br>บันทึกคำตอบของท่านเรียบร้อยแล้ว</div>
+    <p>ท่านสามารถดูผลสรุปจากคำตอบที่บันทึกไว้ในอุปกรณ์นี้ได้ที่ด้านล่าง</p>
+    <div class="actions"><button class="primary" id="toResults">ดูผลสำรวจ</button><button class="secondary" id="again">ตอบแบบสอบถามอีกครั้ง</button></div>
+  </section>
+
+  <section class="panel" id="results">
+    <h2>📊 สรุปผลแบบสำรวจ</h2><p class="sub">ประมวลผลจากคำตอบที่บันทึกไว้ในเบราว์เซอร์นี้เท่านั้น</p>
+    <div class="statgrid"><div class="stat"><b id="total">0</b><span>ผู้ตอบทั้งหมด</span></div><div class="stat"><b id="topPet">—</b><span>สัตว์ที่ได้รับความนิยมสูงสุด</span></div><div class="stat"><b id="topCount">0</b><span>จำนวนผู้เลือกอันดับ 1</span></div></div>
+    <h3 style="font-size:16px;margin:20px 0 8px">ความชื่นชอบสัตว์เลี้ยง</h3><div id="chart"><p class="hint">ยังไม่มีข้อมูล กรุณาตอบแบบสอบถามก่อน</p></div>
+    <div class="actions"><button class="secondary" id="export">ดาวน์โหลดผลคำตอบ CSV</button><button class="danger" id="clearData">ลบข้อมูลคำตอบทั้งหมด</button></div>
+    <p class="hint">ไฟล์ CSV สามารถเปิดด้วย Excel หรือ Google Sheets ได้</p>
+  </section>
+
+  <section class="panel">
+    <h2>แหล่งอ้างอิง</h2>
+    <p class="sub">รายการสัตว์เลี้ยง 20 ชนิดอ้างอิงจากบทความ “รวม 20 สัตว์เลี้ยงยอดนิยมของคนไทย มีอะไรบ้าง อัปเดต 2026”</p>
+    <a href="https://xn--72c1a1bljq3c9azg6d3a.com/article/the-most-popular-pets-in-thailand" target="_blank" rel="noopener">อ่านบทความต้นฉบับ</a>
+    <p class="hint">หมายเหตุ: แบบสอบถามนี้เป็นการเก็บความคิดเห็นของกลุ่มตัวอย่าง ไม่ใช่ผลสำรวจระดับประเทศ และไม่ได้อ้างว่าคำตอบที่บันทึกในอุปกรณ์เดียวเป็นตัวแทนคนไทยทั้งหมด</p>
+  </section>
+</main>
+<footer>แบบสำรวจความชอบสัตว์เลี้ยงของคนไทย · จัดทำเพื่อการศึกษา</footer>
+<script>
+const KEY='thaiPetSurveyResponsesV1';
+const petNames=['สุนัขพันธุ์ใหญ่','ไก่สวยงาม','เต่าบก','นกแก้ว','เป็ดสวยงาม','แมว','กระต่าย','หนูเลี้ยงสวยงาม','ปลาสวยงาม','กุ้งสวยงาม','นกขนาดเล็ก','สุนัขพันธุ์เล็ก','ชูการ์ไกลเดอร์','เม่นแคระ','กิ้งก่า','ตุ๊กแก','งูสวยงาม','กบสวยงาม','แมงมุม','บุชเบบี้'];
+const other=document.getElementById('otherPets');
+petNames.forEach((p,i)=>{const l=document.createElement('label');l.className='option';l.innerHTML=`<input type="checkbox" name="others" value="${p}"><span>${p}</span>`;other.appendChild(l)});
+function getData(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
+function saveData(a){localStorage.setItem(KEY,JSON.stringify(a))}
+function val(name){return document.querySelector(`[name="${name}"]:checked`)?.value||''}
+function updateProgress(){const required=['age','region','budget'];let done=required.filter(id=>document.getElementById(id).value).length;['gender','ownership','favorite','reason','intent','factor','future'].forEach(n=>{if(val(n))done++});let pct=Math.round(done/10*100);document.getElementById('progress').style.width=pct+'%';document.getElementById('progressText').textContent=`ความคืบหน้าข้อมูลที่จำเป็น ${pct}%`}
+document.getElementById('surveyForm').addEventListener('change',updateProgress);
+document.getElementById('surveyForm').addEventListener('submit',e=>{
+ e.preventDefault();if(!e.target.reportValidity())return;
+ const response={timestamp:new Date().toISOString(),age:document.getElementById('age').value,gender:val('gender'),region:document.getElementById('region').value,ownership:val('ownership'),favorite:val('favorite'),others:[...document.querySelectorAll('[name="others"]:checked')].map(x=>x.value).join('; '),reason:val('reason'),intent:val('intent'),factor:val('factor'),budget:document.getElementById('budget').value,future:val('future'),comment:document.getElementById('comment').value.trim()};
+ const all=getData();all.push(response);saveData(all);render();document.getElementById('thanks').classList.remove('hidden');document.getElementById('thanks').scrollIntoView({behavior:'smooth'});
+});
+function render(){const data=getData();document.getElementById('total').textContent=data.length;const counts=Object.fromEntries(petNames.map(p=>[p,0]));data.forEach(x=>{if(counts[x.favorite]!==undefined)counts[x.favorite]++});const sorted=petNames.map(p=>[p,counts[p]]).sort((a,b)=>b[1]-a[1]);const top=sorted[0];document.getElementById('topPet').textContent=data.length?top[0]:'—';document.getElementById('topCount').textContent=data.length?top[1]:0;
+ const chart=document.getElementById('chart');if(!data.length){chart.innerHTML='<p class="hint">ยังไม่มีข้อมูล กรุณาตอบแบบสอบถามก่อน</p>';return}
+ chart.innerHTML=sorted.map(([p,n])=>`<div class="barrow"><span>${p}</span><div class="track"><div class="bar" style="width:${n/data.length*100}%"></div></div><strong>${n}</strong></div>`).join('');
+}
+function csvEscape(v){return '"'+String(v??'').replace(/"/g,'""')+'"'}
+document.getElementById('export').addEventListener('click',()=>{const data=getData();if(!data.length){alert('ยังไม่มีคำตอบให้ดาวน์โหลด');return}const headers=['วันเวลาที่ตอบ','อายุ','เพศ','ภูมิภาค','สถานะการเลี้ยงสัตว์','สัตว์ที่ชอบที่สุด','สัตว์ที่สนใจเพิ่มเติม','เหตุผล','ความสนใจในการเลี้ยง','ปัจจัยในการเลือก','งบประมาณต่อเดือน','สัตว์ที่คาดว่าจะนิยม','ความคิดเห็น'];const keys=['timestamp','age','gender','region','ownership','favorite','others','reason','intent','factor','budget','future','comment'];const csv='\\uFEFF'+[headers,...data.map(r=>keys.map(k=>r[k]))].map(row=>row.map(csvEscape).join(',')).join('\\r\\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ผลสำรวจความชอบสัตว์เลี้ยง.csv';a.click();URL.revokeObjectURL(a.href)});
+document.getElementById('clearData').addEventListener('click',()=>{if(confirm('ต้องการลบคำตอบทั้งหมดที่บันทึกไว้ในเบราว์เซอร์นี้ใช่หรือไม่?')){localStorage.removeItem(KEY);render()}});
+document.getElementById('toResults').addEventListener('click',()=>document.getElementById('results').scrollIntoView({behavior:'smooth'}));
+document.getElementById('again').addEventListener('click',()=>{document.getElementById('surveyForm').reset();document.getElementById('thanks').classList.add('hidden');updateProgress();document.getElementById('surveyIntro').scrollIntoView({behavior:'smooth'})});
+document.getElementById('surveyForm').addEventListener('reset',()=>setTimeout(updateProgress,0));
+render();updateProgress();
+</script>
+</body></html>
